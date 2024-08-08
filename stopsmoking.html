@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quit smoking</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel ='stylesheet' href="./css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script type="text/javascript" src="./js/data.js"></script>
+    <link rel="stylesheet" href="dist/calendar.js.css">
+    <script src="dist/calendar.js"></script>
+
+</head>
+<body>
+<div class = 'container'>
+    <div id = 'stats'>
+        <p id = 'quit_text' class = "hidden"> Quit started at: <span id = 'quit_time'></span></p>
+        <p>Last craving: <span id ='last_craved'>-</span></p>
+        <p>craving free: <span id ='time_craving_free'>-</span></p>
+
+        <p>Last smoked: <span id ='last_smoked'>-</span></p>
+        <p>Non-smoking streak: <span id ='time_clean'>-</span></p>
+    </div>
+
+    <div id = 'buttons'>
+        <button id = 'quit_button' class = "good"><i class="fas fa-smoking-ban"></i> Quit <i class="far fa-smile-beam"></i></button>
+        <button id = 'crave_button' class = "warning"><i class="far fa-meh-blank"></i> I have a craving <i class="fas fa-grimace"></i></button>
+        <button id = 'smoked_button' class = "danger">I just smoked <i class="far fa-frown"></i><i class="fas fa-smoking"> </i> </button>
+
+    </div>
+
+    <button id = "show_calendar"><i class="far fa-calendar"></i></button>
+
+</div>
+
+<div id ='calendar' class = "hidden">
+    
+</div>
+
+<script type="text/javascript" src="./js/main.js"></script>
+<script type = 'text/javascript' src = './js/calendar.js'></script>
+</body>
