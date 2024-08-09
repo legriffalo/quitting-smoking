@@ -5,18 +5,30 @@
 
 
 var calendarInstance1 = new calendarJs( "calendar", {
-    manualEditingEnabled: true,
-    // useLocalStorageForEvents: true,
     exportEventsEnabled: true,
-    importEventsEnabled:true
+    importEventsEnabled:true,
+    manualEditingEnabled: true,
+    showDayNumberOrdinals: false,
+    fullScreenModeEnabled: false,
+    showTimelineArrowsOnViews: false,
+    maximumEventTitleLength: 10,
+    maximumEventDescriptionLength: 10,
+    maximumEventLocationLength: 10,
+    maximumEventGroupLength: 10,
+    tooltipsEnabled: true,
+    visibleDays: [ 0, 1, 2, 3, 4 ],
+    // hideEventsWithoutGroupAssigned: true,
+    showHolidays: false,
+    allowHtmlInDisplay: true,
+    workingDays: []
 
 
     // All your options can be set here
   } );
 
-  const data1 = new File([JSON.stringify(testData)],'mydata.JSON',{ type: 'application/json',
-    webkitRelativePath:""
- });
+//   const data1 = new File([JSON.stringify(testData)],'mydata.JSON',{ type: 'application/json',
+//     webkitRelativePath:""
+//  });
 
 function attemptImport(){
     console.log('attempting import')

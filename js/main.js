@@ -25,6 +25,7 @@ quitStartTime!=''? quittingToggle(): null;
 // functions
 const save = ()=>{
     localStorage.setItem('userData',JSON.stringify(userData));
+    // location.reload();
 }
 
 function dateFormater(date){
@@ -35,16 +36,16 @@ function dateFormater(date){
 
 function timeElapsed(t1,t2){
     // console.log('last cig is', t1,'now is ', t2);
-    console.log(t1);
-    console.log(t2);
+    // console.log(t1);
+    // console.log(t2);
     const diffTime = Math.abs(Date.parse(t2) - Date.parse(t1));
-    console.log('check me !!!')
-    console.log('now',Date.now())
-    console.log(diffTime)
+    // console.log('check me !!!')
+    // console.log('now',Date.now())
+    // console.log(diffTime)
     const diffDaysHoursMins = `${Math.floor(diffTime / (1000 * 60 * 60 * 24))} days ${Math.floor(diffTime / (1000 * 60*60)%24)} hours ${Math.floor(diffTime / (1000 * 60)%60)} mins`;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
-    console.log(diffTime + " milliseconds");
-    console.log(diffDaysHoursMins + "all");
+    // console.log(diffTime + " milliseconds");
+    // console.log(diffDaysHoursMins + "all");
     return [diffDaysHoursMins,diffDays] 
 }
 
@@ -61,9 +62,6 @@ function timeUpdate(){
 function showStaticData(){
     quitStartTime = userData["quit_started"]? userData["quit started"]: '';
     lastCig = userData["last_smoked"]? userData["last_smoked"]:'-';
-
-
-
     showQuitStartTime = userData["quit_started"]? userData["quit_started"]:'You should quit!';
     quitTime.innerHTML = showQuitStartTime;
 
@@ -80,6 +78,7 @@ function showStaticData(){
 
 
 function quittingToggle(){
+    // console.log(Date.parse(userData["quit_started"]),Date.parse(userData["last_smoked"]))
     if(quitButton.classList.contains("hidden")){
         quitButton.classList.remove('hidden');
         quitText.classList.add('hidden');
@@ -88,6 +87,7 @@ function quittingToggle(){
         r.style.setProperty('--main-body-color', '#0B032D');
         r.style.setProperty('--danger-color', '#9C0D38');
     }
+    else if(!userData["quit_started"]){}
     else{
         quitButton.classList.add('hidden');
         quitText.classList.remove('hidden');
@@ -115,6 +115,7 @@ craveButton.addEventListener('pointerdown',()=>{
     let newCrave = new Date();
     userData["last_craving"] = dateFormater(newCrave);
     lastCraving = userData["last_craving"];
+    newCalendarData("craving","orange");
     save();
     showStaticData();
 })
@@ -126,6 +127,7 @@ smokedButton.addEventListener('pointerdown',()=>{
     userData["last_smoked"] = dateFormater(newCig);
     lastCig = userData["last_smoked"];
     quittingToggle()
+    newCalendarData("smoked","red");
     save();
     showStaticData();
 
@@ -134,11 +136,14 @@ smokedButton.addEventListener('pointerdown',()=>{
 calendarButton.addEventListener('pointerdown',()=>{
     // alert('toggling')
     document.getElementById('calendar').classList.toggle('hidden_calendar');
+    updateCalendar();
+
 })
 
 
 // make timers update while page is visible
 window.addEventListener("load",()=>{
     showStaticData()
+
     setInterval(timeUpdate,3000);
 })
