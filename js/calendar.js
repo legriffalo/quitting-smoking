@@ -1,5 +1,7 @@
 var calendarInstance1 = new calendarJs( "calendar", {
   manualEditingEnabled: false,
+  maximumEventsPerDayDisplay:"15",
+  minutesBetweenSections:"60",
   exportEventsEnabled: true,
     importEventsEnabled:true,
     // initialDateTime:,
@@ -60,15 +62,18 @@ function newCalendarData(event,color){
 }
 
 function buildEvent(event,color){
-  let date = new Date()
-  let now = calendarTimeFormat(date)
-  let min5 = new Date(date.getTime() + 0.5*60000);
+  let now = new Date()
+  var date = new Date(now.getTime() + now.getTimezoneOffset() * 60000);  
+  
+  // let now = calendarTimeFormat(date)
+  let min5 = new Date(date.getTime() + 5*60000);
   min5 = calendarTimeFormat(min5)
   console.log('now is now', now)
   console.log('min5 is ',min5)
+  
   let newData = {"alertOffset":0,
       "color":color,
-      "colorBorder":"black",
+      "colorBorder":"white",
       "colorText":"",
       "from":now,
       "id":event + now,
@@ -81,6 +86,8 @@ function buildEvent(event,color){
       "type":0,
       "url":""
       }
+
+  console.log(newData)
 
 return newData;
         

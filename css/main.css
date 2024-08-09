@@ -61,10 +61,10 @@ button{
 
 #show_calendar{
     color:white;
-    background-color: #0B032D;
+    background-color: rgba(0,0,0,0);
     border-style: none;
     
-    margin:2vh 35vw 2vh 35vw;
+    margin:5vh 35vw 2vh 35vw;
     font-size: 2.5vh;
     height:5vh;
     width: 20vw;
@@ -75,15 +75,17 @@ button{
 }
 
 #stats{
-    margin-bottom:10vh;
+    margin-bottom:5vh;
 }
 
 #quit_text.hidden{
     margin-bottom: 4vh;
 }
 
-p{ height: 4vh;
-   margin-block-end: 0.5vh;}
+p{ 
+    height: 4vh;
+    font-size:2.2vh;
+    margin-block-end: 0.5vh;}
 
 
 #calendar{ 
@@ -100,3 +102,10 @@ p{ height: 4vh;
     opacity:0;
 }
 
+div.event{
+    
+    color:black !important;
+    border-style: solid !important;
+    height:2vh;
+    overflow-y: hidden;
+}
