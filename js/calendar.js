@@ -40,10 +40,10 @@ function updateCalendar(){
   const fileList = dataTransfer.files;
   // Set your input `files` to the file list
   fileInput.files = fileList;
-  console.log(fileInput.length)
-  console.log(fileList)
+  // console.log(fileInput.length)
+  // console.log(fileList)
   calendarInstance1.import(fileList);
-  console.log(fileList)
+  // console.log(fileList)
   console.log('changed')
 };
 

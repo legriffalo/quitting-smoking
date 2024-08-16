@@ -29,6 +29,10 @@ const save = ()=>{
 }
 
 function dateFormater(date){
+    // console.log(typeof(Date.parse(date)))
+    date = new Date (date);
+    // console.log(typeof(date))
+    // date = new Date()
     var dateString = ("0" + date.getDate()).slice(-2) + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +
     date.getFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
     return dateString
@@ -36,43 +40,50 @@ function dateFormater(date){
 
 function timeElapsed(t1,t2){
     // console.log('last cig is', t1,'now is ', t2);
-    // console.log(t1);
-    // console.log(t2);
+    // console.log(Date.parse(t1));
+    // console.log(Date.parse(t2));
     const diffTime = Math.abs(Date.parse(t2) - Date.parse(t1));
     // console.log('check me !!!')
     // console.log('now',Date.now())
-    // console.log(diffTime)
+    // console.log('diff time is ', diffTime)
+
+
+
     const diffDaysHoursMins = `${Math.floor(diffTime / (1000 * 60 * 60 * 24))} days ${Math.floor(diffTime / (1000 * 60*60)%24)} hours ${Math.floor(diffTime / (1000 * 60)%60)} mins`;
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
+    // const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
     // console.log(diffTime + " milliseconds");
-    // console.log(diffDaysHoursMins + "all");
-    return [diffDaysHoursMins,diffDays] 
+    console.log(diffDaysHoursMins + "all");
+    return [diffDaysHoursMins,diffTime] 
 }
 
 function timeUpdate(){
     let now = new Date()
-    now = dateFormater(now);
+    // now = dateFormater(now);
     //  console.log(lastCig - now)
-    // console.log(timeElapsed(lastCig,now));
-    timeClean.innerHTML = timeElapsed(lastCig,now)[0];
-    timeCravingFree.innerHTML = timeElapsed(lastCraving,now)[0];
+    console.log(timeElapsed(lastCig,now)[1]);
+    timeClean.innerHTML = timeElapsed(lastCig,now)[1]? timeElapsed(lastCig,now)[0]:'-';
+    timeCravingFree.innerHTML = timeElapsed(lastCraving,now)[1]? timeElapsed(lastCraving,now)[0]:'-';
     
 };
 
 function showStaticData(){
+    console.log('updating display')
     quitStartTime = userData["quit_started"]? userData["quit started"]: '';
     lastCig = userData["last_smoked"]? userData["last_smoked"]:'-';
-    showQuitStartTime = userData["quit_started"]? userData["quit_started"]:'You should quit!';
+
+    showQuitStartTime = userData["quit_started"]? dateFormater(userData["quit_started"]):'You should quit!';
     quitTime.innerHTML = showQuitStartTime;
+    console.log('showed quitting')
 
 
     // add script for cravings here
-    let showLastCrave = userData["last_craving"]? userData["last_craving"]:'-'
+    let showLastCrave = userData["last_craving"]? dateFormater(userData["last_craving"]):'-';
+    // console.log(showLastCrave)
     lastCraved.innerHTML = showLastCrave;
 
-    let showLastCig = userData["last_smoked"]? userData["last_smoked"]:'-'
+    let showLastCig = userData["last_smoked"]? dateFormater(userData["last_smoked"]):'-';
     lastSmoked.innerHTML = showLastCig;
-
+console.log('wtf')
 
 };
 
@@ -102,18 +113,19 @@ function quittingToggle(){
 
 
 quitButton.addEventListener('pointerdown',()=>{
-    quitStartTime = new Date();
-    userData["quit_started"]? null:userData["quit_started"] = dateFormater(quitStartTime);
-    userData["last_craving"] = dateFormater(quitStartTime)
-    userData["last_smoked"] =  dateFormater(quitStartTime)
-    quittingToggle()
+    quitStartTime = new Date(); 
+    console.log(quitStartTime);
+    userData['quit_started'] = quitStartTime;
+    userData["last_craving"] = quitStartTime;
+    userData["last_smoked"] = quitStartTime;
+    quittingToggle();
     save();
     showStaticData();
 })
 
 craveButton.addEventListener('pointerdown',()=>{
     let newCrave = new Date();
-    userData["last_craving"] = dateFormater(newCrave);
+    userData["last_craving"] = newCrave;
     lastCraving = userData["last_craving"];
     newCalendarData("craving","orange");
     save();
@@ -124,7 +136,7 @@ craveButton.addEventListener('pointerdown',()=>{
 smokedButton.addEventListener('pointerdown',()=>{
     let newCig = new Date();
     userData["quit_started"] = '';
-    userData["last_smoked"] = dateFormater(newCig);
+    userData["last_smoked"] = newCig;
     lastCig = userData["last_smoked"];
     quittingToggle()
     newCalendarData("smoked","red");

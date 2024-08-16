@@ -102,10 +102,27 @@ p{
     opacity:0;
 }
 
-div.event{
+/* .full-month-view div.event{
     
     color:black !important;
     border-style: solid !important;
     height:2vh;
     overflow-y: hidden;
+} */
+
+.full-day-view div.event{
+    
+    color:black !important;
+    border-style: solid !important;
+    height:1.4vh;
+    overflow-y: hidden;
 }
+
+/* .full-day-view .contents-events div.hour{
+    height:15vh;
+    
+}  */
+
+/* div.full-day-view div.hour div.hour-text{
+    height:5vh !important;
+}  */
