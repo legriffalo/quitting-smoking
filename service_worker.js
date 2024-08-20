@@ -1,5 +1,5 @@
 // Change this to your repository name
-var GHPATH = '/quitting-smoking';
+var GHPATH = './';
  
 // Choose a different app prefix name
 var APP_PREFIX = 'qs_';
