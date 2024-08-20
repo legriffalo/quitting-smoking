@@ -1,17 +1,26 @@
-// Cached core static resources 
-self.addEventListener("install",e=>{
-    e.waitUntil(
-      caches.open("static").then(cache=>{
-        return cache.addAll(["./",'./images/logo192.png']);
-      })
-    );
-  });
-  
-  // Fatch resources
-  self.addEventListener("fetch",e=>{
-    e.respondWith(
-      caches.match(e.request).then(response=>{
-        return response||fetch(e.request);
-      })
-    );
-  });
+// Change this to your repository name
+var GHPATH = '/quitting-smoking';
+ 
+// Choose a different app prefix name
+var APP_PREFIX = 'qs_';
+ 
+// The version of the cache. Every time you change any of the files
+// you need to change this version (version_01, version_02…). 
+// If you don't change the version, the service worker will give your
+// users the old files!
+var VERSION = 'version_00';
+ 
+// The files to make available for offline use. make sure to add 
+// others to this list
+var URLS = [    
+  `${GHPATH}/`,
+  `${GHPATH}/stopsmoking.html`,
+  `${GHPATH}/css/main.css`,
+  `${GHPATH}/js/main.js`
+  `${GHPATH}/js/calendar.js`
+  `${GHPATH}/js/data.js`
+  `${GHPATH}/js/index.js`
+  `${GHPATH}/js/main.js`
+  `${GHPATH}/dist/**`
+
+]
