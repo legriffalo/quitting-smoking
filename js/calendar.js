@@ -48,25 +48,35 @@ function updateCalendar(){
 };
 
 
-function calendarTimeFormat(date){
+function calendarTimeFormat(x){
   // console.log(date)
+  let date = new Date(x);
   var dateString = `${date.getFullYear()}-${("0"+(date.getMonth()+1)).slice(-2)}-${("0" + date.getDate()).slice(-2)}T${("0" + date.getHours()).slice(-2)}:${("0" + date.getMinutes()).slice(-2)}:00.000Z`
   return dateString
 };
 
 
-function newCalendarData(event,color){
+function newCalendarData(event,color, duration,start='',end=''){
     let log = userData["activity_log"];
     let events = log["events"];
-    events.push(buildEvent(event,color));
+    events.push(buildEvent(event,color,duration,start,end));
 }
 
-function buildEvent(event,color){
-  let now = new Date()
+function buildEvent(event,color,duration,start='',end=''){
+  console.log(end)
+  let now = start? new Date(start):new Date();
+  console.log('now is here', now);
+  console.log('end is here', end);
+
+  // keeps time accurate to timezone
   var date = new Date(now.getTime() + now.getTimezoneOffset() * 60000);  
   
   // let now = calendarTimeFormat(date)
-  let min5 = new Date(date.getTime() + 5*60000);
+  // let endTime = end? new Date(end):;
+  let min5 = end? end: new Date(date.getTime() + duration*60000);
+  console.log(min5)
+
+
   min5 = calendarTimeFormat(min5)
   console.log('now is now', now)
   console.log('min5 is ',min5)
@@ -93,6 +103,25 @@ return newData;
         
 };
 
+
+function showDarkZone(){
+  let log = userData['activity_log'];
+  let events = log['events'];
+  let firstDataDate = events[0]["from"];
+  let yearOfFirst = new Date(firstDataDate);
+  console.log(yearOfFirst.getFullYear())
+  // let yearStart = new Date('2024-08-20T08:44:12.871Z');
+
+  let yearStart = new Date(`${yearOfFirst.getFullYear()}-01-01T00:00:00.000z`);
+
+  console.log('date you want is here',yearStart)
+  // console.log(events[0]["from"])
+  // console.log(first)
+  // console.log('look above for first log')
+
+  newCalendarData("no Data","grey",duration = null, start = yearStart , end = firstDataDate)
+}
+
 // console.log(new Date())
 
 // var date = new Date()
@@ -102,6 +131,6 @@ return newData;
 
 // console.log(newCalendarData("1"))
 
-
+showDarkZone();
 
 document.getElementById('calendar').classList.add('hidden_calendar')

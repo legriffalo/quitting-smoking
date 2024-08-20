@@ -52,15 +52,16 @@ function timeElapsed(t1,t2){
     const diffDaysHoursMins = `${Math.floor(diffTime / (1000 * 60 * 60 * 24))} days ${Math.floor(diffTime / (1000 * 60*60)%24)} hours ${Math.floor(diffTime / (1000 * 60)%60)} mins`;
     // const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
     // console.log(diffTime + " milliseconds");
-    console.log(diffDaysHoursMins + "all");
+    // console.log(diffDaysHoursMins + "all");
     return [diffDaysHoursMins,diffTime] 
 }
 
 function timeUpdate(){
     let now = new Date()
     // now = dateFormater(now);
+    console.log('interval running')
     //  console.log(lastCig - now)
-    console.log(timeElapsed(lastCig,now)[1]);
+    // console.log(timeElapsed(lastCig,now)[1]);
     timeClean.innerHTML = timeElapsed(lastCig,now)[1]? timeElapsed(lastCig,now)[0]:'-';
     timeCravingFree.innerHTML = timeElapsed(lastCraving,now)[1]? timeElapsed(lastCraving,now)[0]:'-';
     
@@ -73,7 +74,7 @@ function showStaticData(){
 
     showQuitStartTime = userData["quit_started"]? dateFormater(userData["quit_started"]):'You should quit!';
     quitTime.innerHTML = showQuitStartTime;
-    console.log('showed quitting')
+    // console.log('showed quitting')
 
 
     // add script for cravings here
@@ -110,8 +111,6 @@ function quittingToggle(){
 
 
 // add relevant listeners
-
-
 quitButton.addEventListener('pointerdown',()=>{
     quitStartTime = new Date(); 
     console.log(quitStartTime);
@@ -127,7 +126,7 @@ craveButton.addEventListener('pointerdown',()=>{
     let newCrave = new Date();
     userData["last_craving"] = newCrave;
     lastCraving = userData["last_craving"];
-    newCalendarData("craving","orange");
+    newCalendarData("craving","orange",5);
     save();
     showStaticData();
 })
@@ -139,7 +138,7 @@ smokedButton.addEventListener('pointerdown',()=>{
     userData["last_smoked"] = newCig;
     lastCig = userData["last_smoked"];
     quittingToggle()
-    newCalendarData("smoked","red");
+    newCalendarData("smoked","red",5);
     save();
     showStaticData();
 

@@ -110,11 +110,14 @@ p{
     overflow-y: hidden;
 } */
 
+
+
+/* add some js to add new class labeles to differentiate between quitting and smoking events
 .full-day-view div.event{
     
     color:black !important;
     border-style: solid !important;
-    height:1.4vh;
+    height:1.4vh !important;
     overflow-y: hidden;
 }
 
