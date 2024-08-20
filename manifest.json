@@ -1,6 +1,8 @@
 {
     "name":"Quit smoking tracker",
     "short_name":"QS",
+    "scope": "/github-page-pwa/",
+    "start_url": "/github-page-pwa/",
     "icons":[
         {"src":"/quiting-smoking/android-chrome-192x192.png",
         "sizes":"192x192",
