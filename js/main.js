@@ -1,3 +1,5 @@
+//ensure cache can be cleared and reloaded 
+window.location.href = window.location.href
 // console.log('loaded 2')
 let quitStartTime = userData["quit_started"]? userData["quit started"]: '';
 // console.log(userData["quit_started"])
