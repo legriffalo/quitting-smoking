@@ -21,7 +21,7 @@ var URLS = [
   `${GHPATH}/js/main.js`,
   `${GHPATH}/js/calendar.js`,
   `${GHPATH}/js/data.js`,
-  `${GHPATH}/js/index.js`,
+  `${GHPATH}/js/index.js`
   // `${GHPATH}/dist/**`
 
 ]
