@@ -1,17 +1,12 @@
 {
     "name":"Quit smoking tracker",
     "short_name":"QS",
-    "scope": "/quitting-smoking/",
-    "start_url": "/quitting-smoking/",
+    "start_url": "./stopsmoking.html",
     "display": "standalone",
     "id" : "/quitting-smoking/",
     "icons":[
-        {"src":"/quitting-smoking/images/android-chrome-192x192.png",
-        "sizes":"192x192",
-        "type":"image/png"
-        
-    },
-        {"src":"/quitting-smoking/images/android-chrome-512x512.png",
+    
+        {"src":"images/android-chrome-512x512.png",
         "sizes":"512x512",
         "type":"image/png"
         }
