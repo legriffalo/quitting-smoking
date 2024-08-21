@@ -107,10 +107,8 @@ return newData;
 function showDarkZone(){
   try{
   let log = userData['activity_log'];
-}
-catch{
-  console.log('no user data to use')
-}
+
+
   let events = log['events'];
   let firstDataDate = events[0]["from"];
   let yearOfFirst = new Date(firstDataDate);
@@ -125,6 +123,11 @@ catch{
   // console.log('look above for first log')
 
   newCalendarData("no Data","grey",duration = null, start = yearStart , end = firstDataDate)
+  }
+
+  catch{
+    console.log('no user data to use')
+  }
 }
 
 // console.log(new Date())
