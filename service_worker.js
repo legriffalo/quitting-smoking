@@ -15,7 +15,7 @@ var CACHE_NAME = APP_PREFIX + VERSION
 // The files to make available for offline use. make sure to add 
 // others to this list
 var URLS = [    
-  `${GHPATH}/`,
+  // `${GHPATH}/`,
   `${GHPATH}/stopsmoking.html`,
   // `${GHPATH}/css/main.css`,
   // `${GHPATH}/js/main.js`,
