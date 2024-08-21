@@ -17,12 +17,12 @@ var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [    
   `${GHPATH}/`,
   `${GHPATH}/stopsmoking.html`,
-  `${GHPATH}/css/main.css`,
-  `${GHPATH}/js/main.js`,
-  `${GHPATH}/js/calendar.js`,
-  `${GHPATH}/js/data.js`,
-  `${GHPATH}/js/index.js`,
-  `${GHPATH}/js/main.js`
+  // `${GHPATH}/css/main.css`,
+  // `${GHPATH}/js/main.js`,
+  // `${GHPATH}/js/calendar.js`,
+  // `${GHPATH}/js/data.js`,
+  // `${GHPATH}/js/index.js`,
+  // `${GHPATH}/js/main.js`
   // `${GHPATH}/dist/**`
 
 ]
