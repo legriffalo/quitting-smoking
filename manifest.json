@@ -4,6 +4,7 @@
     "scope": "/quitting-smoking/",
     "start_url": "/quitting-smoking/",
     "display": "standalone",
+    "id" : "/quitting-smoking/",
     "icons":[
         {"src":"/quitting-smoking/images/android-chrome-192x192.png",
         "sizes":"192x192",
