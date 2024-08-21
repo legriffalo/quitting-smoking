@@ -68,19 +68,19 @@ self.addEventListener('fetch', function (e) {
     )
   })
   
-  self.addEventListener('activate', function (e) {
-    e.waitUntil(
-      caches.keys().then(function (keyList) {
-        var cacheWhitelist = keyList.filter(function (key) {
-          return key.indexOf(APP_PREFIX)
-        })
-        cacheWhitelist.push(CACHE_NAME);
-        return Promise.all(keyList.map(function (key, i) {
-          if (cacheWhitelist.indexOf(key) === -1) {
-            console.log('deleting cache : ' + keyList[i] );
-            return caches.delete(keyList[i])
-          }
-        }))
-      })
-    )
-  })
+  // self.addEventListener('activate', function (e) {
+  //   e.waitUntil(
+  //     caches.keys().then(function (keyList) {
+  //       var cacheWhitelist = keyList.filter(function (key) {
+  //         return key.indexOf(APP_PREFIX)
+  //       })
+  //       cacheWhitelist.push(CACHE_NAME);
+  //       return Promise.all(keyList.map(function (key, i) {
+  //         if (cacheWhitelist.indexOf(key) === -1) {
+  //           console.log('deleting cache : ' + keyList[i] );
+  //           return caches.delete(keyList[i])
+  //         }
+  //       }))
+  //     })
+  //   )
+  // })

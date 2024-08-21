@@ -3,7 +3,7 @@
     "short_name":"QS",
     "scope": "/quitting-smoking/",
     "start_url": "/quitting-smoking/",
-    "display": "fullscreen",
+    "display": "standalone",
     "icons":[
         {"src":"/quitting-smoking/images/android-chrome-192x192.png",
         "sizes":"192x192",
