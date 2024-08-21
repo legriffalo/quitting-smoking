@@ -15,7 +15,7 @@ var CACHE_NAME = APP_PREFIX + VERSION
 // The files to make available for offline use. make sure to add 
 // others to this list
 var URLS = [    
-  `${GHPATH}/`,
+  '/quitting-smoking/',
   `${GHPATH}/stopsmoking.html`,
   `${GHPATH}/css/main.css`,
   `${GHPATH}/js/main.js`,
@@ -68,19 +68,19 @@ self.addEventListener('fetch', function (e) {
     )
   })
   
-  // self.addEventListener('activate', function (e) {
-  //   e.waitUntil(
-  //     caches.keys().then(function (keyList) {
-  //       var cacheWhitelist = keyList.filter(function (key) {
-  //         return key.indexOf(APP_PREFIX)
-  //       })
-  //       cacheWhitelist.push(CACHE_NAME);
-  //       return Promise.all(keyList.map(function (key, i) {
-  //         if (cacheWhitelist.indexOf(key) === -1) {
-  //           console.log('deleting cache : ' + keyList[i] );
-  //           return caches.delete(keyList[i])
-  //         }
-  //       }))
-  //     })
-  //   )
-  // })
+  self.addEventListener('activate', function (e) {
+    e.waitUntil(
+      caches.keys().then(function (keyList) {
+        var cacheWhitelist = keyList.filter(function (key) {
+          return key.indexOf(APP_PREFIX)
+        })
+        cacheWhitelist.push(CACHE_NAME);
+        return Promise.all(keyList.map(function (key, i) {
+          if (cacheWhitelist.indexOf(key) === -1) {
+            console.log('deleting cache : ' + keyList[i] );
+            return caches.delete(keyList[i])
+          }
+        }))
+      })
+    )
+  })
