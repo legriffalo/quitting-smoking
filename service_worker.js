@@ -3,12 +3,14 @@ var GHPATH = '/quitting-smoking/';
  
 // Choose a different app prefix name
 var APP_PREFIX = 'qs_';
- 
 // The version of the cache. Every time you change any of the files
 // you need to change this version (version_01, version_02…). 
 // If you don't change the version, the service worker will give your
 // users the old files!
-var VERSION = 'version_10';
+var VERSION = 'version_1.0';
+
+var CACHE_NAME = APP_PREFIX + VERSION
+
  
 // The files to make available for offline use. make sure to add 
 // others to this list
@@ -24,6 +26,24 @@ var URLS = [
   `${GHPATH}/dist/**`
 
 ]
+
+// code to delete caches
+
+// self.addEventListener('activate', function(event) {
+//     event.waitUntil(
+//       caches.keys().then(function(cacheNames) {
+//         return Promise.all(
+//           cacheNames.filter(function(cacheName) {
+//             // Return true if you want to remove this cache,
+//             // but remember that caches are shared across
+//             // the whole origin
+//           }).map(function(cacheName) {
+//             return caches.delete(cacheName);
+//           })
+//         );
+//       })
+//     );
+//   });
 
 self.addEventListener('fetch', function (e) {
     console.log('fetch request : ' + e.request.url);
