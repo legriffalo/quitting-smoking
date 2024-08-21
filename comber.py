@@ -17,7 +17,7 @@ y = os.listdir('./dist/translations')
 for file in y:
     if '.' in file:
         # s.append(file)
-        f.write(f'"./dist/tranlsations/{file}"')
+        f.write(f'"./dist/translations/{file}"')
         f.write(',\n')
 
 
