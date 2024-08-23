@@ -1,6 +1,3 @@
-//ensure cache can be cleared and reloaded 
-// window.location.href = window.location.href
-// console.log('loaded 2')
 let quitStartTime = userData["quit_started"]? userData["quit started"]: '';
 // console.log(userData["quit_started"])
 let lastCig = userData["last_smoked"]? userData["last_smoked"]:'-';
@@ -31,10 +28,7 @@ const save = ()=>{
 }
 
 function dateFormater(date){
-    // console.log(typeof(Date.parse(date)))
     date = new Date (date);
-    // console.log(typeof(date))
-    // date = new Date()
     var dateString = ("0" + date.getDate()).slice(-2) + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +
     date.getFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
     return dateString
@@ -60,10 +54,7 @@ function timeElapsed(t1,t2){
 
 function timeUpdate(){
     let now = new Date()
-    // now = dateFormater(now);
     console.log('interval running')
-    //  console.log(lastCig - now)
-    // console.log(timeElapsed(lastCig,now)[1]);
     timeClean.innerHTML = timeElapsed(lastCig,now)[1]? timeElapsed(lastCig,now)[0]:'-';
     timeCravingFree.innerHTML = timeElapsed(lastCraving,now)[1]? timeElapsed(lastCraving,now)[0]:'-';
     
@@ -86,7 +77,7 @@ function showStaticData(){
 
     let showLastCig = userData["last_smoked"]? dateFormater(userData["last_smoked"]):'-';
     lastSmoked.innerHTML = showLastCig;
-console.log('wtf')
+// console.log('wtf')
 
 };
 
@@ -115,13 +106,15 @@ function quittingToggle(){
 // add relevant listeners
 quitButton.addEventListener('pointerdown',()=>{
     quitStartTime = new Date(); 
-    console.log(quitStartTime);
+    // console.log(quitStartTime);
     userData['quit_started'] = quitStartTime;
     userData["last_craving"] = quitStartTime;
     userData["last_smoked"] = quitStartTime;
+    newCalendarData("quit","green");
     quittingToggle();
     save();
     showStaticData();
+    location.reload();
 })
 
 craveButton.addEventListener('pointerdown',()=>{
@@ -131,6 +124,7 @@ craveButton.addEventListener('pointerdown',()=>{
     newCalendarData("craving","orange",5);
     save();
     showStaticData();
+    location.reload();
 })
 
 // reset settings if smoking button is pressed
@@ -143,13 +137,14 @@ smokedButton.addEventListener('pointerdown',()=>{
     newCalendarData("smoked","red",5);
     save();
     showStaticData();
+    location.reload();
 
 })
 
 calendarButton.addEventListener('pointerdown',()=>{
-    // alert('toggling')
     document.getElementById('calendar').classList.toggle('hidden_calendar');
     updateCalendar();
+
 
 })
 
@@ -157,6 +152,6 @@ calendarButton.addEventListener('pointerdown',()=>{
 // make timers update while page is visible
 window.addEventListener("load",()=>{
     showStaticData()
-
     setInterval(timeUpdate,3000);
+    setInterval(dressCalendarElements,1000)
 })

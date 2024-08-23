@@ -112,13 +112,27 @@ p{
 
 
 
-/* add some js to add new class labeles to differentiate between quitting and smoking events
-.full-day-view div.event{
+/* add some js to add new class labeles to differentiate between quitting and smoking events*/
+.minify{
     
-    color:black !important;
     border-style: solid !important;
     height:1.4vh !important;
     overflow-y: hidden;
+    opacity:0.7 !important;
+}
+
+.full-day-view div.minify{
+    
+    border-style: solid !important;
+    height:1.4vh !important;
+    overflow-y: hidden;
+    opacity:0.7 !important;
+}
+
+.full-day-view div.event{
+    
+    
+    opacity:0.5 !important;
 }
 
 /* .full-day-view .contents-events div.hour{

@@ -24,6 +24,7 @@ var calendarInstance1 = new calendarJs( "calendar", {
 // All your options can be set here
 } );
 
+
 function updateCalendar(){
   console.log('attempting import')
   var input = document.createElement( "input" ); 
@@ -40,11 +41,9 @@ function updateCalendar(){
   const fileList = dataTransfer.files;
   // Set your input `files` to the file list
   fileInput.files = fileList;
-  // console.log(fileInput.length)
-  // console.log(fileList)
   calendarInstance1.import(fileList);
-  // console.log(fileList)
-  console.log('changed')
+  
+  return 1;
 };
 
 
@@ -63,10 +62,10 @@ function newCalendarData(event,color, duration,start='',end=''){
 }
 
 function buildEvent(event,color,duration,start='',end=''){
-  console.log(end)
+  // console.log(end)
   let now = start? new Date(start):new Date();
-  console.log('now is here', now);
-  console.log('end is here', end);
+  // console.log('now is here', now);
+  // console.log('end is here', end);
 
   // keeps time accurate to timezone
   var date = new Date(now.getTime() + now.getTimezoneOffset() * 60000);  
@@ -74,12 +73,12 @@ function buildEvent(event,color,duration,start='',end=''){
   // let now = calendarTimeFormat(date)
   // let endTime = end? new Date(end):;
   let min5 = end? end: new Date(date.getTime() + duration*60000);
-  console.log(min5)
+  // console.log(min5)
 
 
   min5 = calendarTimeFormat(min5)
-  console.log('now is now', now)
-  console.log('min5 is ',min5)
+  // console.log('now is now', now)
+  // console.log('min5 is ',min5)
   
   let newData = {"alertOffset":0,
       "color":color,
@@ -105,40 +104,89 @@ return newData;
 
 
 function showDarkZone(){
-  try{
+  if(!!userData["activity_log"]){
+  
   let log = userData['activity_log'];
 
 
   let events = log['events'];
   let firstDataDate = events[0]["from"];
   let yearOfFirst = new Date(firstDataDate);
-  console.log(yearOfFirst.getFullYear())
-  // let yearStart = new Date('2024-08-20T08:44:12.871Z');
-
+  let now = new Date()
+  yearOfFirst = new Date(yearOfFirst.getTime() + now.getTimezoneOffset() * 60000);
   let yearStart = new Date(`${yearOfFirst.getFullYear()}-01-01T00:00:00.000z`);
-
-  console.log('date you want is here',yearStart)
-  // console.log(events[0]["from"])
-  // console.log(first)
-  // console.log('look above for first log')
-
-  newCalendarData("no Data","grey",duration = null, start = yearStart , end = firstDataDate)
+  newCalendarData("no Data","grey",duration = null, start = yearStart , end = yearOfFirst)
   }
-
-  catch{
+  else{
     console.log('no user data to use')
   }
 }
 
-// console.log(new Date())
+function quitShow(){
+  try{
+    let log = userData['activity_log'];
+    console.log(log["events"])
+    // let events = log['events'];
 
-// var date = new Date()
-// var newDateObj = new Date(date.getTime() + 5*60000);
+    let dupevents = log['events'].slice();
+    console.log("duplicated", dupevents);
+    let i = 0;
 
-// console.log(calendarTimeFormat(newDateObj))
+    while(dupevents.length>0){
+      i+=1;
+      let check = dupevents.pop()
+      // console.log(check)
+      if (check["title"]=="smoked"){
+        console.log("breaking as smoke event is most recent ")
+        break };
 
-// console.log(newCalendarData("1"))
+      if(check["title"]=="quit"){
+        //do the end date thing
+        console.log("found a quit event", i)
+        let original = log["events"]
+        console.log(original)
+        console.log(original[original.length -i])
+        let update = original[original.length -i]
+        let now = new Date()
+        update["to"] = calendarTimeFormat(now.getTime() + now.getTimezoneOffset() * 60000 + 300000);
+        save()
+        break
+      }
+    }
+
+  }
+
+  catch{console.log('no user data available')}
+}
+
+//important// add code to select all events and add a new class to minify them in day to day view
+function dressCalendarElements(){
+  console.log("dressing events");
+  try{
+  let els = document.getElementsByClassName('event');
+  // console.log("dressing events",els[0])
+
+  for(let i = 0; i<els.length;i++){
+    console.log("fixing calendar css")
+    if(els[i].id.includes('smoked')){
+      els[i].classList.add('minify');
+    }
+    if(els[i].id.includes('craving')){
+      els[i].classList.add('minify')
+    }
+  }
+}
+catch{
+  console.log("no elements to fix");
+}
+}
+
 
 showDarkZone();
+quitShow();
+// dressCalendarElements();
 
 document.getElementById('calendar').classList.add('hidden_calendar')
+
+
+
