@@ -152,6 +152,6 @@ calendarButton.addEventListener('pointerdown',()=>{
 // make timers update while page is visible
 window.addEventListener("load",()=>{
     showStaticData()
-    setInterval(timeUpdate,3000);
+    setInterval(timeUpdate,1000);
     setInterval(dressCalendarElements,1000)
 })
