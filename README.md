@@ -13,7 +13,7 @@
 - 🛠️ Feature 3: Tracks and displays basic stats on your performance to help keep you motivated to stay nicotine free.
 
 ### 🎯 Why Use this project?
-- If you want to quit, although there are applications which are much better otu there =) 
+- If you want to quit, although there are applications which are much better out there =) 
 - If you want to pull it apart and see how calendar.js works or manifest 3.
 
 ### Install/files?
